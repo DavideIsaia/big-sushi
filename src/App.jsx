@@ -12,14 +12,23 @@ import shrimp from './images/shrimp.png';
 class App extends Component {
   state = {
     cards: [
-      {id: 0, nome: "California", prezzo: 2.90, immagine: california},
-      {id: 1, nome: "Dragon", prezzo: 5.00, immagine: dragon},
-      {id: 2, nome: "Dynamite", prezzo: 3.50, immagine: dynamite},
-      {id: 3, nome: "Philadelphia", prezzo: 4.20, immagine: philadelphia},
-      {id: 4, nome: "Rainbow", prezzo: 8.90, immagine: rainbow},
-      {id: 5, nome: "Shrimp", prezzo: 7.90, immagine: shrimp},
+      {id: 0, nome: "California", prezzo: 2.99, immagine: california, quantità: 0},
+      {id: 1, nome: "Dragon", prezzo: 4.99, immagine: dragon, quantità: 0},
+      {id: 2, nome: "Dynamite", prezzo: 3.49, immagine: dynamite, quantità: 0},
+      {id: 3, nome: "Philadelphia", prezzo: 4.19, immagine: philadelphia, quantità: 0},
+      {id: 4, nome: "Rainbow", prezzo: 8.99, immagine: rainbow, quantità: 0},
+      {id: 5, nome: "Shrimp", prezzo: 7.99, immagine: shrimp, quantità: 0},
     ]
   }
+
+  handleIncrement = card => {
+    const cards = [...this.state.cards];
+    const id = cards.indexOf(card);
+    cards[id] = { ...card };
+    cards[id].quantità++;
+    this.setState({cards}); 
+  }
+
   render() {
     return (
       <>
@@ -30,9 +39,8 @@ class App extends Component {
             {this.state.cards.map(card => (
               <Card
                 key={card.id}
-                nome={card.nome}
-                prezzo={card.prezzo}
-                immagine={card.immagine}
+                onIncrement={this.handleIncrement}
+                card={card}
               />
             ))}
           </div>
