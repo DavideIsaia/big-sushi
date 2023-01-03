@@ -8,10 +8,9 @@ class Card extends Component {
       <div className="card-body">
         <h5 className="card-title">{this.props.card.nome} Rolls</h5>
         <p className="card-text">€{this.props.card.prezzo}</p>
-        <button onClick={() => this.props.onIncrement(this.props.card)} className="btn btn-primary">
-          Aggiungi 
-          <span className='badge bg-dark ms-2'>{this.props.card.quantità}</span>
-          </button>
+        <button onClick={() => this.props.onDecrement(this.props.card)} className="btn btn-danger">-</button>
+        <span className='btn btn-dark ms-2 me-2'>{this.props.card.quantità}</span>
+        <button onClick={() => this.props.onIncrement(this.props.card)} className="btn btn-primary">+</button>
       </div>
     </div>
     );
